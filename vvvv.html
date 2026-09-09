@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Həsən & Mikail Studio — Web Baku</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box
+}
+body{
+  background:#000;
+  color:#FFF;
+  font-family:Inter,Arial,sans-serif;
+  min-height:100vh
+}
+.wrap{
+  max-width:500px; /* мобилка */
+  margin:0 auto;
+  padding:20px
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 0
+}
+.logo{
+  font-weight:900;
+  font-size:16px;
+  letter-spacing:-1px
+}
+.status{
+  font-size:12px;
+  font-weight:700;
+  transition:0.3s
+}
+.status.online{
+  color:#FFE600
+}
+.status.offline{
+  color:#ff3b30
+}
+.status.closed{
+  color:#666
+}
+.neon{
+  color:#FFE600;
+  text-shadow:0 0 10px #FFE600,0 0 20px #FFE600
+}
+.h1{
+  font-size:56px;
+  font-weight:900;
+  line-height:0.9;
+  letter-spacing:-3px;
+  margin:40px 0 15px;
+  color:#FFF
+}
+.sub{
+  color:#AAA;
+  font-size:16px;
+  line-height:1.4;
+  margin-bottom:10px
+}
+.note{
+  color:#FFE600;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:30px
+}
+.btns{
+  display:flex;
+  gap:10px;
+  margin-bottom:30px
+}
+.btn{
+  flex:1;
+  text-align:center;
+  padding:18px 10px;
+  border-radius:100px;
+  text-decoration:none;
+  font-weight:900;
+  font-size:15px;
+  transition:0.3s
+}
+.btn:hover{
+  transform:translateY(-2px)
+}
+.btn-whatsapp{
+  background:#FFE600;
+  color:#000;
+  box-shadow:0 0 20px #FFE600;
+  pointer-events:auto;
+}
+.btn-whatsapp.disabled{
+  background:#333;
+  color:#666;
+  box-shadow:none;
+  pointer-events:none;
+  cursor:not-allowed;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-bottom:30px
+}
+.card{
+  background:#111;
+  border:1px solid #222;
+  border-radius:16px;
+  padding:14px 8px;
+  text-align:center;
+  transition:0.3s
+}
+.card:hover{
+  border-color:#FFE600;
+  transform:translateY(-3px)
+}
+.card-title{
+  font-size:16px;
+  font-weight:900;
+  margin-bottom:3px;
+  color:#FFF
+}
+.card-title.neon-text{
+  color:#FFE600
+}
+.card-sub{
+  font-size:10px;
+  color:#777;
+  line-height:1.2
+}
+.langs{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  margin-top:30px
+}
+.lang-btn{
+  background:#111;
+  border:1px solid #333;
+  color:#AAA;
+  padding:10px 18px;
+  border-radius:100px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.3s
+}
+.lang-btn:hover{
+  border-color:#FFE600
+}
+.lang-btn.active{
+  background:#FFE600;
+  color:#000;
+  border-color:#FFE600
+}
+footer{
+  text-align:center;
+  padding:40px 0;
+  color:#333;
+  font-size:11px;
+  letter-spacing:2px
+}
+
+/* ===== ПЛАНШЕТ ===== */
+@media(max-width:400px){
+.h1{
+    font-size:42px
+  }
+.card-title{
+    font-size:14px
+  }
+}
+
+/* ===== ДЕСКТОП ===== */
+@media(min-width:1024px){
+ .wrap{
+    max-width:1200px; /* растягиваем на весь экран */
+    padding:40px 80px
+  }
+  header{
+    padding:20px 0
+  }
+ .logo{
+    font-size:20px
+  }
+ .status{
+    font-size:14px
+  }
+ .h1{
+    font-size:120px; /* огромный заголовок */
+    letter-spacing:-6px;
+    margin:80px 0 20px
+  }
+ .sub{
+    font-size:24px;
+    max-width:600px
+  }
+ .note{
+    font-size:16px
+  }
+ .btns{
+    max-width:400px;
+    margin-bottom:60px
+  }
+ .btn{
+    font-size:18px;
+    padding:22px
+  }
+ .grid{
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    max-width:900px;
+    margin-bottom:60px
+  }
+ .card{
+    padding:30px 20px
+  }
+ .card-title{
+    font-size:28px;
+    margin-bottom:8px
+  }
+ .card-sub{
+    font-size:14px
+  }
+ .langs{
+    justify-content:flex-start
+  }
+  footer{
+    padding:60px 0;
+    font-size:14px
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">HasMi©2026</div>
+    <div class="status online" id="status">● ONLINE</div>
+  </header>
+  <main>
+    <h1 class="h1 neon" id="t-title">WEB STUDIO<br>IN BAKU</h1>
+    <p class="sub" id="t-sub">Сайты которые приносят деньги.<br>Сдаем за 3 дня.</p>
+    <p class="note" id="t-note">Личные встречи: НЕ ПРОВОДИМ. Все онлайн.</p>
+    <div class="btns">
+      <a href="https://wa.me/994515272227" class="btn btn-whatsapp" id="t-whatsapp">Написать в WhatsApp</a>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title" id="t-card1-title">от 50 AZN</div>
+        <div class="card-sub" id="t-card1-sub">Визитка</div>
+      </div>
+      <div class="card">
+        <div class="card-title" id="t-card2-title">от 200 AZN</div>
+        <div class="card-sub" id="t-card2-sub">Landing</div>
+      </div>
+      <div class="card">
+        <div class="card-title neon-text" id="t-card3-title">14:00-21:00</div>
+        <div class="card-sub" id="t-card3-sub">Рабочее время</div>
+      </div>
+    </div>
+    <div class="langs">
+      <button class="lang-btn active" data-lang="ru">RU</button>
+      <button class="lang-btn" data-lang="az">AZ</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </main>
+  <footer>BAKU, AZ • Həsən & Mehraç</footer>
+</div>
+<script>
+const langData={
+  ru:{
+    title:"WEB STUDIO<br>IN BAKU",
+    sub:"Сайты которые приносят деньги.<br>Сдаем за 3 дня.",
+    note:"Личные встречи: НЕ ПРОВОДИМ. Все онлайн.",
+    noteClosed:"Сейчас мы CLOSED. Пишите с 14:00 до 21:00.",
+    noteNoInternet:"Нет интернета. Проверьте соединение.",
+    whatsapp:"Написать в WhatsApp",
+    whatsappClosed:"Написать можно с 14:00",
+    c1t:"от 50 AZN",
+    c1s:"Визитка",
+    c2t:"от 200 AZN",
+    c2s:"Landing",
+    c3t:"14:00-21:00",
+    c3s:"Рабочее время",
+    online:"● ONLINE",
+    offline:"● OFFLINE",
+    closed:"● CLOSED"
+  },
+  az:{
+    title:"WEB STUDİO<br>BAKIDA",
+    sub:"Pul gətirən saytlar.<br>3 günə təhvil.",
+    note:"Şəxsi görüş: ETMİRİK. Hər şey onlayn.",
+    noteClosed:"Hazırda CLOSED. 14:00-dan 21:00-dək yazın.",
+    noteNoInternet:"İnternet yoxdur. Əlaqəni yoxlayın.",
+    whatsapp:"WhatsApp-da yaz",
+    whatsappClosed:"14:00-dan yaza bilərsiniz",
+    c1t:"50 AZN-dən",
+    c1s:"Vizitka",
+    c2t:"200 AZN-dən",
+    c2s:"Landing",
+    c3t:"14:00-21:00",
+    c3s:"İş saatları",
+    online:"● ONLAYN",
+    offline:"● OFFLINE",
+    closed:"● BAĞLI"
+  },
+  en:{
+    title:"WEB STUDIO<br>IN BAKU",
+    sub:"Websites that make money.<br>Delivered in 3 days.",
+    note:"In-person meetings: NOT AVAILABLE. Online only.",
+    noteClosed:"We are CLOSED now. Message us from 14:00 to 21:00.",
+    noteNoInternet:"No internet. Check connection.",
+    whatsapp:"Message on WhatsApp",
+    whatsappClosed:"Available from 14:00",
+    c1t:"from 50 AZN",
+    c1s:"Business Card",
+    c2t:"from 200 AZN",
+    c2s:"Landing",
+    c3t:"14:00-21:00",
+    c3s:"Working hours",
+    online:"● ONLINE",
+    offline:"● OFFLINE",
+    closed:"● CLOSED"
+  }
+};
+let currentLang='ru';
+const whatsappBtn = document.getElementById('t-whatsapp');
+const noteEl = document.getElementById('t-note');
+const statusEl = document.getElementById('status');
+
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentLang=btn.dataset.lang;
+    updateText();
+  })
+});
+
+function checkWorkingHours(){
+  const now = new Date();
+  const hours = now.getHours();
+  return hours >= 14 && hours < 21;
+}
+
+function updateStatus(){
+  const t = langData[currentLang];
+  const isWorking = checkWorkingHours();
+
+  if(!navigator.onLine){
+    statusEl.innerText = t.offline;
+    statusEl.className = 'status offline';
+    noteEl.innerText = t.noteNoInternet;
+    whatsappBtn.classList.add('disabled');
+    return;
+  }
+
+  if(isWorking){
+    statusEl.innerText = t.online;
+    statusEl.className = 'status online';
+    noteEl.innerText = t.note;
+    whatsappBtn.classList.remove('disabled');
+    whatsappBtn.href = "https://wa.me/994515272227";
+  } else {
+    statusEl.innerText = t.closed;
+    statusEl.className = 'status closed';
+    noteEl.innerText = t.noteClosed;
+    whatsappBtn.classList.add('disabled');
+    whatsappBtn.href = "#";
+  }
+}
+
+function updateText(){
+  const t=langData[currentLang];
+  document.getElementById('t-title').innerHTML=t.title;
+  document.getElementById('t-sub').innerHTML=t.sub;
+  document.getElementById('t-whatsapp').innerText= checkWorkingHours() && navigator.onLine? t.whatsapp : t.whatsappClosed;
+  document.getElementById('t-card1-title').innerText=t.c1t;
+  document.getElementById('t-card1-sub').innerText=t.c1s;
+  document.getElementById('t-card2-title').innerText=t.c2t;
+  document.getElementById('t-card2-sub').innerText=t.c2s;
+  document.getElementById('t-card3-title').innerText=t.c3t;
+  document.getElementById('t-card3-sub').innerText=t.c3s;
+  updateStatus();
+}
+
+window.addEventListener('online',updateStatus);
+window.addEventListener('offline',updateStatus);
+updateText();
+setInterval(updateStatus, 10000);
+</script>
+</body>
+</html>
